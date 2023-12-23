@@ -4,7 +4,7 @@ import torch
 from diffusers import DiffusionPipeline
 
 parser = argparse.ArgumentParser(prog='Simple text to image diffuser')
-parser.add_argument('prompt', required=True)
+parser.add_argument('prompt')
 args = parser.parse_args()
 
 # Set model checkpoint path
