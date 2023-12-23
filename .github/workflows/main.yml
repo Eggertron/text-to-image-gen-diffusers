@@ -1,16 +1,9 @@
 on: 
   workflow_dispatch:
     inputs:
-      youtube_url:
-        description: "YouTube video to convert"
+      text_prompt:
+        description: "Text to Image prompt"
         required: true
-      output_type:
-        type: choice
-        description: video or audio
-        options:
-          - mp3
-          - mp4
-          - default
 
 jobs:
   convertVideo:
@@ -24,7 +17,7 @@ jobs:
         python -m pip install --upgrade torch diffuser
         curl -OLJ https://huggingface.co/hakurei/waifu-diffusion-v1-3/resolve/main/wd-v1-3-float16.ckpt
         mv wd-v1-3-float16.ckpt model.ckpt
-        python main.py "${{ github.event.inputs.youtube_url }}"
+        python main.py "${{ github.event.inputs.text_prompt }}"
         ls -lah
         echo "file name: $OUTFILE"
         echo "Download ready" >> $GITHUB_STEP_SUMMARY
